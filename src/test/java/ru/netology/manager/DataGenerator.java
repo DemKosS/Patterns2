@@ -27,15 +27,16 @@ public class DataGenerator {
     private static void sendRequest(RegistrationUserData user) {
         //Запрос
         given() //"дано"
-                .spec(requestSpec) //Указывается, какая спецификация используется
-                .body(new RegistrationUserData( //Передача в теле объекта, который будет преобразован в JSON,
-                        user.getLogin(),        //собственно логин,
-                        user.getPassword(),     //пароль
-                        user.getStatus()))      //и статус.
-                .when()                         //"когда"
-                .post("/api/system/users") //На какой путь, относительно BaseUri отправляется запрос
-                .then()                         //"тогда ожидаем"
-                .statusCode(200);               //Код 200, все хорошо
+                .spec(requestSpec)
+                .body(new RegistrationUserData(
+                        user.getLogin(),
+                        user.getPassword(),
+                        user.getStatus()))
+                .when()
+                .post("/api/system/users")
+                .then()
+
+                .statusCode(200);
     }
 
     public static String generateLogin() {
